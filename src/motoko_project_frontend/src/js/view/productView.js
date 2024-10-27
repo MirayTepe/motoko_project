@@ -16,5 +16,5 @@ export const ProductView = {
         productContainer.appendChild(productElement);
       });
     }
-  };
+};
   
