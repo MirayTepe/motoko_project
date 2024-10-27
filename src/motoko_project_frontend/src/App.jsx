@@ -1,31 +1,20 @@
-import { useState } from 'react';
-import { motoko_project_backend } from 'declarations/motoko_project_backend';
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import ProductList from "./components/ProductList";
+import ProductDetail from "./components/ProductDetail";
 
-function App() {
-  const [greeting, setGreeting] = useState('');
 
-  function handleSubmit(event) {
-    event.preventDefault();
-    const name = event.target.elements.name.value;
-    motoko_project_backend.greet(name).then((greeting) => {
-      setGreeting(greeting);
-    });
-    return false;
-  }
-
-  return (
-    <main>
-      <img src="/logo2.svg" alt="DFINITY logo" />
-      <br />
-      <br />
-      <form action="#" onSubmit={handleSubmit}>
-        <label htmlFor="name">Enter your name: &nbsp;</label>
-        <input id="name" alt="Name" type="text" />
-        <button type="submit">Click Me!</button>
-      </form>
-      <section id="greeting">{greeting}</section>
-    </main>
-  );
-}
+const App = () => {
+    return (
+        <Router>
+            <div>
+                <Routes>
+                    <Route path="/" element={<ProductList />} />
+                    <Route path="/product/:id" element={<ProductDetail />} />
+                </Routes>
+            </div>
+        </Router>
+    );
+};
 
 export default App;
